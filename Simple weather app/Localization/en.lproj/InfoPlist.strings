@@ -1,0 +1,3 @@
+"CFBundleDisplayName" = "Simple weather app";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "current location";
+"NSLocationWhenInUseUsageDescription" = "current location";
