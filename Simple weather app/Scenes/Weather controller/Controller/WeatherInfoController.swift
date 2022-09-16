@@ -14,7 +14,7 @@ protocol WeatherInfoControllerProtocol: AnyObject {
 class WeatherInfoController: UIViewController {
     
     var viewModel: WeatherInfoProtocol?
-    var city: String = ""
+    var city: City?
 
     @IBOutlet weak private var temp: UILabel!
     @IBOutlet weak private var conditionImage: UIImageView!
@@ -26,7 +26,9 @@ class WeatherInfoController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.addWeatherRequest(city)
+        if let city = city {
+            viewModel?.addWeatherRequest(city.city)
+        }
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -68,17 +70,15 @@ extension WeatherInfoController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension WeatherInfoController: WeatherInfoControllerProtocol {
     func weatherRequest(with response: Weather) {
-        let weatherIcon = response.current.condition.icon.dropFirst(2)
+        let weatherIcon = response.current.condition.icon
         if let url = URL(string: String("https:\(weatherIcon)")) {
             self.downloadImage(from: url)
         }
         collectionView.reloadData()
-        temp.text = String(response.current.temp_c)
+        temp.text = String("\(Int(response.current.temp_c))Cº")
         cityName.text = response.location.name
         countryName.text = response.location.country
         regionName.text = response.location.region
         conditionText.text = response.current.condition.text
     }
-    
-    
 }

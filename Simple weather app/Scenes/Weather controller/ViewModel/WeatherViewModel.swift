@@ -15,7 +15,7 @@ protocol WeatherInfoProtocol {
 class WeatherInfoViewModel: WeatherInfoProtocol {
     
     private weak var viewController: WeatherInfoControllerProtocol?
-    private var city: String = ""
+    private var city: City?
     private var currentHour: [Hour] = []
     
     init(viewController: WeatherInfoControllerProtocol) {

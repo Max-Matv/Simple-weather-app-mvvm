@@ -35,7 +35,10 @@ class CityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let t = viewModel?.getCityList()
+        for i in t! {
+            print(i.isFavorite)
+        }
         locationManager.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
@@ -96,7 +99,7 @@ extension CityViewController: CLLocationManagerDelegate {
         guard let coordinates = locations.last?.coordinate else { return }
         guard let city = viewModel?.searchCurrentLocation(lat: coordinates.latitude, lon: coordinates.longitude) else { return }
         viewModel?.setCurrentCity(city)
-        currentCityLabel.text? += city
+        currentCityLabel.text? += city.city
         isCoordinatesDetermined = true
         currentCityContainer.backgroundColor = .green
     }
@@ -129,23 +132,26 @@ extension CityViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityTableViewCell") as? CityTableViewCell else {
             fatalError()
         }
-        var city: String
+        var city: City
         if isFiltering {
-            city = (viewModel?.getFilteredCity()[indexPath.row].name)!
+            city = (viewModel?.getFilteredCity()[indexPath.row])!
         } else {
-            city = (viewModel?.getCityList()[indexPath.row].name)!
+            city = (viewModel?.getCityList()[indexPath.row])!
         }
         cell.setupCell(city: city)
+        cell.buttonPressed = {
+            self.viewModel?.updateCity(city: city)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WeatherInfoController.instantiate() as! WeatherInfoController
-        var city: String
+        var city: City
         if isFiltering {
-            city = (viewModel?.getFilteredCity()[indexPath.row].name)!
+            city = (viewModel?.getFilteredCity()[indexPath.row])!
         } else {
-            city = (viewModel?.getCityList()[indexPath.row].name)!
+            city = (viewModel?.getCityList()[indexPath.row])!
         }
         vc.city = city
         vc.viewModel = WeatherInfoViewModel(viewController: vc)

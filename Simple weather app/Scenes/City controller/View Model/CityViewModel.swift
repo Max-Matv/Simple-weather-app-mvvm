@@ -8,36 +8,41 @@
 import Foundation
 
 protocol CityViewModelProtocol {
+    func updateCity(city: City)
     func getCityList() -> [City]
-    func getCurrentCity() -> String
+    func getCurrentCity() -> City?
     func filteredContentForSearchText(_ searchText: String)
     func getFilteredCity() -> [City]
-    func setCurrentCity(_ city: String)
-    func searchCurrentLocation(lat: Double, lon: Double) -> String
+    func setCurrentCity(_ city: City)
+    func searchCurrentLocation(lat: Double, lon: Double) -> City
 }
 
 class CityViewModel: CityViewModelProtocol {
     
     private weak var viewController: CityViewControllerProtocol?
-    private var currentCity: String = ""
+    private var currentCity: City?
     private var filteredCity = [City]()
+    private var dbManager = DBManager()
     
     init(viewController: CityViewControllerProtocol) {
         self.viewController = viewController
     }
     
     func filteredContentForSearchText(_ searchText: String) {
-        
         filteredCity = getCityList().filter({(city: City) -> Bool in
-            return city.name.lowercased().contains(searchText.lowercased())
+            return city.city.lowercased().contains(searchText.lowercased()) || city.isFavorite == true
         })
     }
     
-    func getCityList() -> [City] {
-        CityList.cityList
+    func updateCity(city: City) {
+        dbManager.updateData(city: city)
     }
     
-    func getCurrentCity() -> String {
+    func getCityList() -> [City] {
+        dbManager.obtainData()
+    }
+    
+    func getCurrentCity() -> City? {
         currentCity
     }
     
@@ -45,19 +50,19 @@ class CityViewModel: CityViewModelProtocol {
         filteredCity
     }
     
-    func setCurrentCity(_ city: String) {
+    func setCurrentCity(_ city: City) {
         currentCity = city
     }
     
-    func searchCurrentLocation(lat: Double, lon: Double) -> String {
-        var currentCity: String = "not determined"
-        for city in CityList.cityList {
+    func searchCurrentLocation(lat: Double, lon: Double) -> City {
+        var currentCity: City?
+        for city in dbManager.obtainData() {
             if Int(lat) == Int(city.lat) && Int(lon) == Int(city.lon) {
-                currentCity = city.name
+                currentCity = city
                 break
             }
         }
-        return currentCity
+        return currentCity!
     }
     
 }

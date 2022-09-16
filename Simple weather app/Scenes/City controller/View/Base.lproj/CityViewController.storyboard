@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcw-No-hyu">
-                                <rect key="frame" x="20" y="54" width="374" height="35"/>
+                                <rect key="frame" x="20" y="58" width="374" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Choose your city">
                                         <attributes>
@@ -30,31 +31,51 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-IY-TCZ">
-                                <rect key="frame" x="25" y="99" width="364" height="379"/>
+                                <rect key="frame" x="25" y="103" width="364" height="375"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityTableViewCell" id="Isy-0w-VPM" customClass="CityTableViewCell" customModule="Simple_weather_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="364" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="364" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Isy-0w-VPM" id="p5V-s0-GNT">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-iU-bhD">
-                                                    <rect key="frame" x="40" y="11.5" width="284" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-iU-bhD">
+                                                    <rect key="frame" x="40" y="0.0" width="334" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYG-0j-tWX">
+                                                    <rect key="frame" x="313" y="0.0" width="51" height="51"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="wYG-0j-tWX" secondAttribute="height" multiplier="1:1" id="Wtz-QV-KUG"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="star" catalog="system">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="16"/>
+                                                        <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="favoritePressed:" destination="Isy-0w-VPM" eventType="touchUpInside" id="5aD-Eh-fVI"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="wYG-0j-tWX" secondAttribute="bottom" id="1vf-7n-PEJ"/>
+                                                <constraint firstItem="wYG-0j-tWX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p5V-s0-GNT" secondAttribute="leading" constant="20" symbolic="YES" id="Atb-LP-Voz"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="OF5-iU-bhD" secondAttribute="bottom" id="EtQ-2P-r7B"/>
+                                                <constraint firstItem="wYG-0j-tWX" firstAttribute="top" secondItem="p5V-s0-GNT" secondAttribute="top" id="GSP-OU-s3u"/>
                                                 <constraint firstItem="OF5-iU-bhD" firstAttribute="leading" secondItem="p5V-s0-GNT" secondAttribute="leadingMargin" constant="20" id="HZZ-Wv-GVu"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="OF5-iU-bhD" secondAttribute="trailing" constant="20" id="aEz-th-iIW"/>
+                                                <constraint firstItem="OF5-iU-bhD" firstAttribute="top" secondItem="p5V-s0-GNT" secondAttribute="top" id="WUJ-lp-fkf"/>
+                                                <constraint firstAttribute="trailing" secondItem="wYG-0j-tWX" secondAttribute="trailing" id="fws-tL-0bU"/>
+                                                <constraint firstItem="OF5-iU-bhD" firstAttribute="trailing" secondItem="wYG-0j-tWX" secondAttribute="trailing" constant="10" id="kt3-6s-ZsB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cityName" destination="OF5-iU-bhD" id="EAY-iU-W1C"/>
+                                            <outlet property="favoriteButton" destination="wYG-0j-tWX" id="hb3-27-hpC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -131,12 +152,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="worldMap" width="783.08599853515625" height="400.64898681640625"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

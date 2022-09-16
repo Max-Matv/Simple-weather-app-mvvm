@@ -14,7 +14,7 @@ class HourCell: UICollectionViewCell {
     
     
     func setupCell(hour: Hour) {
-        temp.text = String(hour.temp_c)
+        temp.text = String("\(Int(hour.temp_c))Cº")
         time.text = hour.time
     }
     
