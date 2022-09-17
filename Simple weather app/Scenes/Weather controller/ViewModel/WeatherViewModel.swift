@@ -24,7 +24,7 @@ class WeatherInfoViewModel: WeatherInfoProtocol {
     
     func addWeatherRequest(_ city: String) {
         let cityForURL = city.replacingOccurrences(of: " ", with: "%20")
-        let weatherUrl = URL(string: "https://api.weatherapi.com/v1/forecast.json?key=9ca01b9369ff4c158e192827222306&q=\(cityForURL)&days=1&aqi=no&alerts=no")!
+        let weatherUrl = URL(string: "https://api.weatherapi.com/v1/forecast.json?key=9ca01b9369ff4c158e192827222306&q=\(cityForURL)&days=3&aqi=no&alerts=no")!
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: weatherUrl) { data, response, error in
             if let error = error {

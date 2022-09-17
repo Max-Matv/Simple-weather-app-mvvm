@@ -15,6 +15,7 @@ class WeatherInfoController: UIViewController {
     
     var viewModel: WeatherInfoProtocol?
     var city: City?
+    private var weather: Weather?
 
     @IBOutlet weak private var temp: UILabel!
     @IBOutlet weak private var conditionImage: UIImageView!
@@ -33,6 +34,11 @@ class WeatherInfoController: UIViewController {
         collectionView.dataSource = self
     }
     
+    @IBAction func getForecast(_ sender: Any) {
+        let vc = ForecastViewController.instantiate() as! ForecastViewController
+        vc.weather = weather
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
@@ -80,5 +86,6 @@ extension WeatherInfoController: WeatherInfoControllerProtocol {
         countryName.text = response.location.country
         regionName.text = response.location.region
         conditionText.text = response.current.condition.text
+        weather = response
     }
 }

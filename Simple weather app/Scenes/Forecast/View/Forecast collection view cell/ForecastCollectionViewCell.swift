@@ -1,17 +1,17 @@
 //
-//  HourCell.swift
+//  ForecastCollectionViewCell.swift
 //  Simple weather app
 //
-//  Created by Maksim Matveichuk on 27.Jun.22.
+//  Created by Maksim Matveichuk on 16.Sep.22.
 //
 
 import UIKit
 
-class HourCell: UICollectionViewCell {
+class ForecastCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak private var temp: UILabel!
+    @IBOutlet weak private var date: UILabel!
     @IBOutlet weak private var conditionImage: UIImageView!
-    @IBOutlet weak private var time: UILabel!
+    @IBOutlet weak private var temp: UILabel!
     
     private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
@@ -28,13 +28,13 @@ class HourCell: UICollectionViewCell {
             }
         }
     }
-    
+
     func setupCell(hour: Hour) {
         if let url = URL(string: String("https:\(hour.condition.icon)")) {
             self.downloadImage(from: url)
         }
+        date.text = hour.time
         temp.text = String("\(Int(hour.temp_c))Cº")
-        time.text = hour.time
     }
-    
+
 }
