@@ -6,20 +6,34 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol WeatherInfoProtocol {
     func addWeatherRequest(_ city: String)
     func getCurrentHour() -> [Hour]
+    func getCurrentHourLocal() -> [HourLocal]
+    func addLocalRequest(_ city: String)
 }
 
 class WeatherInfoViewModel: WeatherInfoProtocol {
-    
+   
     private weak var viewController: WeatherInfoControllerProtocol?
     private var city: City?
     private var currentHour: [Hour] = []
+    private var currentHourLocal: [HourLocal] = []
+    private var dbManager = DBManager()
     
     init(viewController: WeatherInfoControllerProtocol) {
         self.viewController = viewController
+    }
+    func getCurrentHourLocal() -> [HourLocal] {
+        currentHourLocal
+    }
+    
+    func addLocalRequest(_ city: String) {
+        guard let weather = dbManager.obtainDataWeather(city) else { return }
+        viewController?.offlineRequest(with: weather)
+        currentHourLocal = Array(weather.forecast!.forecastday.first!.hour)
     }
     
     func addWeatherRequest(_ city: String) {
@@ -37,6 +51,7 @@ class WeatherInfoViewModel: WeatherInfoProtocol {
             }
             do{
                 let weatherResponse = try JSONDecoder().decode(Weather.self, from: data)
+                self.dbManager.updateLocalData(weather: weatherResponse)
                 DispatchQueue.main.async { [self] in
                     currentHour = weatherResponse.forecast.forecastday.first!.hour
                     viewController?.weatherRequest(with: weatherResponse)

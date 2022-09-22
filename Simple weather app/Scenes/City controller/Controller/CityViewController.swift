@@ -14,6 +14,8 @@ protocol CityViewControllerProtocol: AnyObject {
 
 class CityViewController: UIViewController {
 
+    
+    @IBOutlet weak var someView: UIView!
     @IBOutlet weak private var currentCityLocalizable: UILabel!
     @IBOutlet weak private var openLabel: UILabel!
     @IBOutlet weak private var currentCityContainer: UIView!
@@ -35,27 +37,37 @@ class CityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let t = viewModel?.getCityList()
-        for i in t! {
-            print(i.isFavorite)
-        }
         locationManager.delegate = self
+        setCurrentLocation()
         tableView.dataSource = self
         tableView.delegate = self
         setupSearchController()
         definesPresentationContext = true
+        setupTransitionToDebugScreen()
         setupCurrentCityContainer()
         setupLocalization()
     }
     
+    private func setupTransitionToDebugScreen() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        tapGesture.numberOfTapsRequired = 10
+        someView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func tapAction(_ sender: UITapGestureRecognizer) {
+        let vc = DebugScreenController.instantiate() as! DebugScreenController
+        vc.viewModel = DebugViewModel(viewController: vc)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     private func setupLocalization() {
         openLabel.text = "Open Label".localized()
         currentCityLocalizable.text = "Current City Localizable".localized()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setCurrentLocation()
     }
     
@@ -65,7 +77,7 @@ class CityViewController: UIViewController {
         tap.numberOfTouchesRequired = 1
         currentCityContainer.addGestureRecognizer(tap)
     }
-    
+
     @objc
     private func selectCurrentCity(_ sender: UITapGestureRecognizer) {
         if isCoordinatesDetermined {
@@ -99,7 +111,7 @@ extension CityViewController: CLLocationManagerDelegate {
         guard let coordinates = locations.last?.coordinate else { return }
         guard let city = viewModel?.searchCurrentLocation(lat: coordinates.latitude, lon: coordinates.longitude) else { return }
         viewModel?.setCurrentCity(city)
-        currentCityLabel.text? += city.city
+        currentCityLabel.text? = city.city
         isCoordinatesDetermined = true
         currentCityContainer.backgroundColor = .green
     }
@@ -165,7 +177,4 @@ extension CityViewController: UISearchResultsUpdating {
         viewModel?.filteredContentForSearchText(searchController.searchBar.text!)
         tableView.reloadData()
     }
-    
-   
-    
 }

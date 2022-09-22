@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Debug Screen Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="DebugScreenController" id="Y6W-OH-hqX" customClass="DebugScreenController" customModule="Simple_weather_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oml-z5-igd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qll-rc-Bs5">
+                                        <rect key="frame" x="314" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="qll-rc-Bs5" secondAttribute="height" multiplier="1:1" id="9LK-I9-uVG"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="clear"/>
+                                        <connections>
+                                            <action selector="clearLocalData:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1qS-n1-Zj4"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3T-jh-OUl">
+                                        <rect key="frame" x="5" y="0.0" width="309" height="100"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="r3T-jh-OUl" firstAttribute="leading" secondItem="Oml-z5-igd" secondAttribute="leading" constant="5" id="0U7-Mv-vN1"/>
+                                    <constraint firstItem="r3T-jh-OUl" firstAttribute="top" secondItem="Oml-z5-igd" secondAttribute="top" id="22O-gM-kTY"/>
+                                    <constraint firstItem="qll-rc-Bs5" firstAttribute="top" secondItem="Oml-z5-igd" secondAttribute="top" id="4Lf-AW-i3G"/>
+                                    <constraint firstAttribute="trailing" secondItem="qll-rc-Bs5" secondAttribute="trailing" id="Ox3-tX-LiJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="r3T-jh-OUl" secondAttribute="bottom" id="axb-xS-oog"/>
+                                    <constraint firstAttribute="bottom" secondItem="qll-rc-Bs5" secondAttribute="bottom" id="kVi-X9-Zof"/>
+                                    <constraint firstItem="qll-rc-Bs5" firstAttribute="leading" secondItem="r3T-jh-OUl" secondAttribute="trailing" id="xCn-0z-1Br"/>
+                                    <constraint firstAttribute="height" constant="100" id="yc9-hq-R06"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Oml-z5-igd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IYV-UH-k5j"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Oml-z5-igd" secondAttribute="trailing" id="PTK-HD-8EI"/>
+                            <constraint firstItem="Oml-z5-igd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="mee-Ko-PgX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="66"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

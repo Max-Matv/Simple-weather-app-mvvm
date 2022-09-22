@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcw-No-hyu">
-                                <rect key="frame" x="20" y="58" width="374" height="35"/>
+                                <rect key="frame" x="20" y="54" width="374" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Choose your city">
                                         <attributes>
@@ -31,11 +30,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ez0-IY-TCZ">
-                                <rect key="frame" x="25" y="103" width="364" height="375"/>
+                                <rect key="frame" x="25" y="99" width="364" height="379"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityTableViewCell" id="Isy-0w-VPM" customClass="CityTableViewCell" customModule="Simple_weather_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="364" height="51"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="364" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Isy-0w-VPM" id="p5V-s0-GNT">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="51"/>
@@ -118,12 +117,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtV-B2-hr0">
+                                <rect key="frame" x="0.0" y="523" width="414" height="339"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XK5-mv-jza" secondAttribute="trailing" constant="20" id="H6K-cd-BLU"/>
                             <constraint firstItem="ez0-IY-TCZ" firstAttribute="top" secondItem="rcw-No-hyu" secondAttribute="bottom" constant="10" id="Qps-eJ-FL0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MtV-B2-hr0" secondAttribute="bottom" id="QyC-2Z-NCV"/>
+                            <constraint firstItem="MtV-B2-hr0" firstAttribute="top" secondItem="XK5-mv-jza" secondAttribute="bottom" id="RuV-3t-Hhd"/>
                             <constraint firstItem="u0e-4F-KaV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="T70-Fj-pv4"/>
                             <constraint firstItem="rcw-No-hyu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Tyq-c0-Ymo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rcw-No-hyu" secondAttribute="trailing" constant="20" id="W1p-6b-OQ0"/>
@@ -133,6 +137,8 @@
                             <constraint firstItem="XK5-mv-jza" firstAttribute="top" secondItem="ez0-IY-TCZ" secondAttribute="bottom" constant="5" id="dwx-7v-Uxf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ez0-IY-TCZ" secondAttribute="trailing" constant="25" id="jGo-Pp-rHF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u0e-4F-KaV" secondAttribute="trailing" constant="50" id="jqh-IG-ls9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MtV-B2-hr0" secondAttribute="trailing" id="qB7-Gc-sp6"/>
+                            <constraint firstItem="MtV-B2-hr0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qEU-69-e6L"/>
                             <constraint firstItem="XK5-mv-jza" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="rUY-Yg-kVu"/>
                             <constraint firstItem="u0e-4F-KaV" firstAttribute="top" secondItem="XK5-mv-jza" secondAttribute="bottom" constant="5" id="tfl-PL-lSB"/>
                         </constraints>
@@ -143,6 +149,7 @@
                         <outlet property="currentCityLabel" destination="sKk-dG-ddf" id="qRe-Cl-sVL"/>
                         <outlet property="currentCityLocalizable" destination="qZZ-SS-9lV" id="sA4-eb-CJQ"/>
                         <outlet property="openLabel" destination="rcw-No-hyu" id="bfm-N4-bWN"/>
+                        <outlet property="someView" destination="MtV-B2-hr0" id="aNb-Xi-A9a"/>
                         <outlet property="tableView" destination="ez0-IY-TCZ" id="68V-be-fuH"/>
                     </connections>
                 </viewController>

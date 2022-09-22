@@ -29,6 +29,11 @@ class HourCell: UICollectionViewCell {
         }
     }
     
+    func setupLocalCell(hour: HourLocal) {
+        temp.text = String("\(Int(hour.tempC))Cº")
+        time.text = hour.time
+    }
+    
     func setupCell(hour: Hour) {
         if let url = URL(string: String("https:\(hour.condition.icon)")) {
             self.downloadImage(from: url)
